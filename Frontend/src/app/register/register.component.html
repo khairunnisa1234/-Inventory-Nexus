@@ -1,0 +1,73 @@
+<div class="hello">
+    <head>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    </head>
+    <br/>
+    <div class="container">
+      <h2>Register Form</h2>
+      <form #registerForm="ngForm" (ngSubmit)="registerSubmit(registerForm)" novalidate>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <input class="form-control" type="text" name="fullName" ngModel #fullName="ngModel" required minlength="2" maxlength="30" />
+                </div><br/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                  <input class="form-control" type="text" name="mobileNumber" ngModel #mobileNumber="ngModel" required minlength="10" maxlength="10"/>
+                </div><br/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                  <input class="form-control" type="email" name="emailId" ngModel #emailId="ngModel" required/>
+                </div><br/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                  <input class="form-control" type="password" name="password" ngModel #password="ngModel" required minlength="6" maxlength="30"/>
+                </div><br/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                  <input class="form-control" type="password" name="confirmPassword" ngModel #confirmPassword="ngModel" required minlength="6" maxlength="30"/>
+                </div><br/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button [disabled]="!registerForm.valid" class="btn btn-primary">Register</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+    <div>
+      <div *ngIf="fullName.errors?.['required'] && fullName.touched" style="color: red;">Enter Full Name</div>
+      <div *ngIf="mobileNumber.errors?.['required'] && mobileNumber.touched" style="color: red;">Enter Mobile Number</div>
+      <div *ngIf="emailId.errors?.['required'] && emailId.touched" style="color: red;">Enter Email ID</div>
+      <div *ngIf="password.errors?.['required'] && password.touched" style="color: red;">Enter Password</div>
+      <div *ngIf="confirmPassword.errors?.['required'] && confirmPassword.touched" style="color: red;">Confirm Password is required</div>
+      <div *ngIf="fullName.errors?.['minlength'] && fullName.touched" style="color: red;">Enter Atleast 2 Characters</div>
+      <div *ngIf="mobileNumber.errors?.['minlength'] && mobileNumber.touched" style="color: red;">Enter 10 Characters</div>
+      <div *ngIf="password.errors?.['minlength'] && password.touched" style="color: red;">Enter Atleast 6 Characters</div>
+      <div *ngIf="confirmPassword.errors?.['minlength'] && confirmPassword.touched" style="color: red;">Confirm Password should be atleast 6 characters</div>
+      <div *ngIf="registerForm.form.controls['confirmPassword'].touched && registerForm.form.controls['confirmPassword'].value !== registerForm.form.controls['password'].value" style="color: red;">Passwords do not match</div>
+    </div>
+  </div>
+  

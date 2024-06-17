@@ -1,0 +1,12 @@
+* {
+    max-width: 100%;
+  }
+  
+  .hello {
+    box-sizing: border-box;
+    margin-top: 200px;
+    max-width: 30%;
+    max-height: 50px;
+    margin-left: 550px;
+  }
+  
